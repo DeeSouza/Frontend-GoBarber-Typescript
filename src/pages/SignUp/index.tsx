@@ -45,7 +45,7 @@ const SignUp: React.FC = () => {
           abortEarly: false,
         });
 
-        api.post('/users', data);
+        await api.post('/users', data);
 
         addToast({
           type: 'success',
