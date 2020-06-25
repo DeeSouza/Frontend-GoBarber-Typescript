@@ -37,18 +37,18 @@ const Profile: React.FC = () => {
 
         const schema = Yup.object().shape({
           name: Yup.string().required('Nome é obrigatório'),
-          old_password: Yup.string(),
           email: Yup.string()
             .required('E-mail é obrigatório')
             .email('Digite um e-mail válido'),
+          old_password: Yup.string(),
           password: Yup.string().when('old_password', {
-            is: (val) => !!val.length,
+            is: (val) => val !== '' && val !== undefined,
             then: Yup.string().required('Campo obrigatório'),
             otherwise: Yup.string(),
           }),
           password_confirmation: Yup.string()
             .when('old_password', {
-              is: (val) => !!val.length,
+              is: (val) => val !== '' && val !== undefined,
               then: Yup.string().required('Campo obrigatório'),
               otherwise: Yup.string(),
             })
